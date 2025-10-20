@@ -1,0 +1,16 @@
+bash scripts/start_all_mcp_servers.sh
+bash scripts/stop_all_mcp_servers.sh
+
+bash scripts/start_agentcore.sh
+tail -f logs/mcp_camera1.log
+tail -f logs/mcp_camera2.log
+
+bash scripts/start_web_backend.sh
+
+cd ./services/go2rtc/
+docker compose up
+
+code ~/Library/Application Support/ngrok/ngrok.yml 
+ngrok start --all
+
+curl -X POST http://localhost:8080/invocations -H "Content-Type: application/json" -d '{"prompt": "listen to me"}'

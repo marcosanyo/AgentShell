@@ -1,0 +1,71 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+instance/
+.DS_Store
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.hypothesis/
+
+# Distribution / packaging
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Logs
+*.log
+pip-log.txt
+
+# Node.js
+node_modules/
+frontend/dist/
+npm-debug.log*
+yarn-error.log*
+
+# Project Specific Ignores
+# Generated audio files
+/audio_files/
+/output.wav
+/services/go2rtc/audio_files/
+
+# Sensitive config files
+/config/.env
+/services/go2rtc/.env
+/config/sa-vertex-functions.json
+# Security - Keys and credentials
+*.key
+*.pem
+*secret*
+*credential*
+
+# IDE specific
+.vscode/
+.kiro/
+.idea/
+
+# Runtime files
+logs/*.pid
+*.pid
+
+# Archives that shouldn't be committed
+*.zip
+*.tar.gz
+.bedrock_agentcore.yaml

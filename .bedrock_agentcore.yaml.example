@@ -1,0 +1,77 @@
+# Example Bedrock AgentCore configuration file
+# Copy this file to .bedrock_agentcore.yaml and update with your own values
+
+default_agent: agentcore_app
+agents:
+  main:
+    name: main
+    entrypoint: /path/to/your/project/app/main.py
+    platform: linux/arm64
+    container_runtime: docker
+    aws:
+      execution_role: arn:aws:iam::YOUR_ACCOUNT_ID:role/AmazonBedrockAgentCoreSDKRuntime-REGION-SUFFIX
+      execution_role_auto_create: false
+      account: 'YOUR_ACCOUNT_ID'
+      region: YOUR_REGION
+      ecr_repository: YOUR_ACCOUNT_ID.dkr.ecr.YOUR_REGION.amazonaws.com/bedrock-agentcore-main
+      ecr_auto_create: false
+      network_configuration:
+        network_mode: PUBLIC
+      protocol_configuration:
+        server_protocol: HTTP
+      observability:
+        enabled: true
+    bedrock_agentcore:
+      agent_id: YOUR_AGENT_ID
+      agent_arn: arn:aws:bedrock-agentcore:YOUR_REGION:YOUR_ACCOUNT_ID:runtime/YOUR_RUNTIME_ID
+      agent_session_id: YOUR_SESSION_ID
+    codebuild:
+      project_name: bedrock-agentcore-main-builder
+      execution_role: arn:aws:iam::YOUR_ACCOUNT_ID:role/AmazonBedrockAgentCoreSDKCodeBuild-REGION-SUFFIX
+      source_bucket: bedrock-agentcore-codebuild-sources-YOUR_ACCOUNT_ID-YOUR_REGION
+    memory:
+      mode: STM_ONLY
+      memory_id: YOUR_MEMORY_ID
+      memory_arn: arn:aws:bedrock-agentcore:YOUR_REGION:YOUR_ACCOUNT_ID:memory/YOUR_MEMORY_ID
+      memory_name: main_mem
+      event_expiry_days: 30
+      first_invoke_memory_check_done: false
+    authorizer_configuration: null
+    request_header_configuration: null
+    oauth_configuration: null
+  agentcore_app:
+    name: agentcore_app
+    entrypoint: /path/to/your/project/strands_agent/agentcore_app.py
+    platform: linux/arm64
+    container_runtime: docker
+    aws:
+      execution_role: arn:aws:iam::YOUR_ACCOUNT_ID:role/AmazonBedrockAgentCoreSDKRuntime-REGION-SUFFIX
+      execution_role_auto_create: false
+      account: 'YOUR_ACCOUNT_ID'
+      region: YOUR_REGION
+      ecr_repository: YOUR_ACCOUNT_ID.dkr.ecr.YOUR_REGION.amazonaws.com/bedrock-agentcore-agentcore_app
+      ecr_auto_create: false
+      network_configuration:
+        network_mode: PUBLIC
+      protocol_configuration:
+        server_protocol: HTTP
+      observability:
+        enabled: true
+    bedrock_agentcore:
+      agent_id: YOUR_AGENT_ID
+      agent_arn: arn:aws:bedrock-agentcore:YOUR_REGION:YOUR_ACCOUNT_ID:runtime/YOUR_RUNTIME_ID
+      agent_session_id: YOUR_SESSION_ID
+    codebuild:
+      project_name: bedrock-agentcore-agentcore_app-builder
+      execution_role: arn:aws:iam::YOUR_ACCOUNT_ID:role/AmazonBedrockAgentCoreSDKCodeBuild-REGION-SUFFIX
+      source_bucket: bedrock-agentcore-codebuild-sources-YOUR_ACCOUNT_ID-YOUR_REGION
+    memory:
+      mode: STM_AND_LTM
+      memory_id: YOUR_MEMORY_ID
+      memory_arn: null
+      memory_name: agentcore_app_memory
+      event_expiry_days: 30
+      first_invoke_memory_check_done: true
+    authorizer_configuration: null
+    request_header_configuration: null
+    oauth_configuration: null

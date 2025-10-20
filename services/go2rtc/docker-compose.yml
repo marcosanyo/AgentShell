@@ -1,0 +1,17 @@
+services:
+  go2rtc:
+    env_file:
+      - .env
+    image: alexxit/go2rtc
+    # network_mode: host is not supported on Docker for Mac. Using port mapping instead.
+    ports:
+      - "1984:1984"     # API
+      - "8555:8555/tcp" # WebRTC TCP signaling
+      - "8555:8555/udp" # WebRTC UDP media
+    privileged: true         # only for FFmpeg hardware transcoding
+    restart: unless-stopped  # autorestart on fail or config change from WebUI
+    environment:
+      - TZ=Atlantic/Bermuda  # timezone in logs
+    volumes:
+      - "./config:/config"        # folder for go2rtc.yaml file
+      - "./audio_files:/audio"  # folder for temporary audio files

@@ -1,0 +1,121 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "agent shell",
+      "intents": [
+        {
+          "name": "CallAgentIntent",
+          "slots": [
+            {
+              "name": "Room",
+              "type": "RoomType"
+            }
+          ],
+          "samples": [
+            "start agent shell in {Room}",
+            "start agent shell for {Room}",
+            "start agent shell in the {Room}",
+            "start agent shell for the {Room}",
+            "start conversation in {Room}",
+            "start conversation in the {Room}",
+            "start conversation for {Room}",
+            "connect to {Room}",
+            "connect to the {Room}",
+            "talk to {Room}",
+            "talk to the {Room}",
+            "speak with {Room}",
+            "speak with the {Room}",
+            "begin session in {Room}",
+            "begin session in the {Room}",
+            "begin session for {Room}",
+            "check on {Room}",
+            "check on the {Room}",
+            "monitor {Room}",
+            "monitor the {Room}",
+            "{Room} please",
+            "{Room}",
+            "the {Room}"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "help",
+            "how do I use this"
+          ]
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": [
+            "cancel",
+            "never mind"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "stop",
+            "quit"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "RoomType",
+          "values": [
+            {
+              "name": {
+                "value": "living room",
+                "synonyms": [
+                  "lounge",
+                  "main room"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "entrance",
+                "synonyms": [
+                  "front door",
+                  "entry"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "CallAgentIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "Room",
+              "type": "RoomType",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1234567890.Room"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "SKILL_RESPONSE"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1234567890.Room",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Which room? Please say living room or entrance."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+api:
+  listen: :1984
+webrtc:
+  listen: :8555
+streams:
+  # Camera 1 (192.168.11.34)
+  tapo_cam1:
+    - rtsp://${CAMERA1_USER}:${CAMERA1_PASSWORD}@${CAMERA1_IP}:554/stream1
+    - tapo://admin:${TAPO_CLOUD_PASSWORD_SHA256}@${CAMERA1_IP}
+    - ffmpeg:tapo_cam1#audio=aac
+  
+  # Camera 2 (192.168.11.24)
+  tapo_cam2:
+    - rtsp://${CAMERA2_USER}:${CAMERA2_PASSWORD}@${CAMERA2_IP}:554/stream1
+    - tapo://admin:${TAPO_CLOUD_PASSWORD_SHA256}@${CAMERA2_IP}
+    - ffmpeg:tapo_cam2#audio=aac
+  
+  # Legacy default stream (points to camera1 for backwards compatibility)
+  tapo_cam:
+    - rtsp://${RTSP_USER}:${RTSP_PASSWORD}@${CAMERA_IP}:554/stream1
+    - tapo://admin:${TAPO_CLOUD_PASSWORD_SHA256}@${CAMERA_IP}
+    - ffmpeg:tapo_cam#audio=aac
+
+log:
+  format: "color"
+  level: "debug"
+  output: "stdout"
+  time: "UNIXMS"
