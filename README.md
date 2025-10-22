@@ -70,6 +70,12 @@ Enterprise AI capabilities with **consumer-grade hardware** (~$20-40/camera vs $
 
 ## 🎬 Demo Scenario: Visitor Response
 
+### 📹 Demo Video
+
+Watch AgentShell in action:
+
+[![AgentShell Demo](https://img.youtube.com/vi/Wt0n9WLfi5o/0.jpg)](https://youtu.be/Wt0n9WLfi5o)
+
 **Situation**: Visitor at the front door. Two cameras: living room + entrance.
 
 1. **🔔 Doorbell rings**
@@ -86,6 +92,10 @@ Enterprise AI capabilities with **consumer-grade hardware** (~$20-40/camera vs $
 12. **🚪 Front door camera**: "Please leave the package at the door. Thank you."
 
 > **Continuous interaction**: After each report, the agent automatically listens for your next instruction via `listen_on_camera`, creating a natural conversation flow.
+
+---
+
+**Additional demo**: [Camera movement demonstration](https://youtu.be/DyWGClwT0DE)
 
 ## 🏗️ Architecture
 
