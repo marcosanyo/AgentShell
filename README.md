@@ -98,8 +98,10 @@ Watch AgentShell in action:
 
 **Situation**: Visitor at the front door. Two cameras: living room + entrance.
 
+> **Note**: Alexa integration is currently in testing phase using Alexa Developer Console. Production deployment with real Alexa devices is planned for future releases.
+
 1. **🔔 Doorbell rings**
-2. **🎙️ "Alexa, start Agent Shell"** (via Alexa Developer Console)
+2. **🎙️ "Alexa, start Agent Shell"** (via Alexa Developer Console Test Simulator)
 3. **🤖 Living room camera**: "Hello! I'm Agent Shell. How can I assist you?"
 4. **👤 You**: "Please ask the visitor at the front door what they need."
 5. **👁️ *Possession effect: Living → Door***
@@ -130,7 +132,7 @@ Watch AgentShell in action:
 │  • Strands Agents SDK (MCP Tool Orchestration)         │
 │  • Amazon Bedrock Nova (Multimodal Image Analysis)     │
 │  • AWS Polly/Transcribe (Voice I/O)                    │
-│  • Amazon S3 (Snapshot Storage)                        │
+│  • Amazon S3 (Transcribe Audio Storage)                │
 └────────────────────┬────────────────────────────────────┘
                      │ Authorized Remote MCP
                      │ (ngrok/cloudflared tunnel)
@@ -180,6 +182,7 @@ Cloud AI → Authorized MCP → ngrok tunnel → Local MCP Server → Camera (no
   - **Cost advantage**: Use affordable consumer cameras instead of expensive AI cameras ($500-2000+)
   - **No specialized hardware needed**: Standard surveillance cameras work perfectly
 - **ngrok** or **cloudflared**: For secure tunneling (free tier available)
+- **Alexa Developer Account** (optional): For voice trigger testing via Developer Console
 
 ### 1. Installation
 
@@ -518,17 +521,18 @@ This project was built for the **AWS AI Agent Global Hackathon**.
 - **Amazon Bedrock Nova (Micro/Pro)**: On-demand multimodal image analysis
 - **AWS Polly (Neural TTS)**: Multiple voices for character expression (Matthew, Joanna, etc.)
 - **AWS Transcribe**: Real-time speech recognition from camera microphones
-- **Amazon S3**: Snapshot and history storage
+- **Amazon S3**: Audio file storage for AWS Transcribe processing
 - **MCP (Model Context Protocol)**: Redefined from data access to body control
 - **FastMCP**: MCP server framework for rapid development
 
 ## 🌟 Scalability & Future Vision
 
 ### Current Status
-- ✅ End-to-end functionality verified (Alexa trigger → camera selection → conversation loop)
+- ✅ End-to-end functionality verified (Alexa Developer Console → camera selection → conversation loop)
 - ✅ Tested with 2 cameras (living room + entrance)
 - ✅ Secure architecture with no port exposure
 - ✅ Autonomous tool selection via Strands Agents
+- ⚠️ Alexa integration tested via Developer Console (production deployment pending)
 
 ### Easy Scale-Out
 - **Add MCP server = Add body** (no code changes)
@@ -536,8 +540,9 @@ This project was built for the **AWS AI Agent Global Hackathon**.
 - Theoretically unlimited expansion
 
 ### Future Vision
-- 🗣️ Real Alexa voice trigger in production
+- 🗣️ **Production Alexa deployment**: Move from Developer Console testing to real Alexa devices with custom skill certification
 - 📊 Dashboard for event timeline & snapshot history
+- 🖼️ Snapshot storage in S3 for visual history and playback
 - 🌍 Multi-language support (global AWS Polly/Transcribe)
 - 🤖 Integration with smart home, robots, drones via MCP
 - 🌐 Edge AI for low latency & offline operation
